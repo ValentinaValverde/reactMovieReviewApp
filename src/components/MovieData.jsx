@@ -2,24 +2,24 @@ import {ShowMovieData} from "./ShowMovieData"
 import {useState} from "react";
 
 export const MovieData = () => {
-    const [movieObject, setMovieObject] = useState('');
-    const [movieValue, setMovieValue] = useState('')
+    const [movieObject, setMovieObject] = useState([]);
+    const [movieValue, setMovieValue] = useState('');
 
 
-    const getMovie = async (movieObject) => {
-        const response = await fetch (`https://www.omdbapi.com/?t=${movieObject}&apikey=49d9943b`);
+    const getMovie = async (movie) => {
+        const response = await fetch (`https://www.omdbapi.com/?t=${movie}&apikey=49d9943b`);
         const data = await response.json();
 
         console.log("DATA: ", data)
-        setMovieObject(data);
+        setMovieObject([data, ...movieObject]);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("hello there!")
+        console.log("hello there!", movieValue)
         getMovie(movieValue);
     }
-
+console
     const handleChange = (event) => {
         setMovieValue(event.target.value);
     }
@@ -29,7 +29,7 @@ export const MovieData = () => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label> Please type in movie title and date.
+                <label> please type in movie title.
                     <br />
                     <input type="text" placeholder="movie title" value={movieValue} onChange={handleChange}></input>
                 </label>
@@ -38,7 +38,7 @@ export const MovieData = () => {
             </form>
 
 
-            <ShowMovieData movieObject={movieObject} />
+            <ShowMovieData movieObject={movieObject} movieValue={movieValue}/>
 
         </> 
     )
