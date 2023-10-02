@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import React, {useState} from "react"
+import {StarRating} from "./StarRating"
 
 const MovieCard = styled.div`
     background-color: #588157;
@@ -11,13 +12,18 @@ const MovieCard = styled.div`
 
 export const ShowMovieData = ({ movieObject, movieValue }) => {
     const [review, setReview] = useState("")
+    const [reviewValue, setReviewValue] = useState("")
 
-    const onClick = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(review);
+        setReview(reviewValue)
     }
+    console.log(reviewValue);
 
-
+    const handleChange = (event)  => {
+        event.preventDefault();
+        setReviewValue(event.target.value)
+    }
 
     return (
         <>
@@ -45,10 +51,11 @@ export const ShowMovieData = ({ movieObject, movieValue }) => {
 
                         <form className='reviewSection'>
                             <h2>review</h2>
+                            {/* <StarRating /> */} {/* it's a work in progress */}
                             <p>{review}</p>
-                            <input className="reviewInput" type="text" placeholder='type in your review here:' onChange={(event) => { setReview(event.target.value) }}></input>
+                            <input className="reviewInput" type="text" placeholder='type in your review here:' onChange={handleChange}></input>
                             <br />
-                            <button type="submit" onClick={onClick}>submit review</button>
+                            <button type="submit" onClick={handleSubmit}>submit review</button>
                         </form>
 
                     </MovieCard>

@@ -40,7 +40,6 @@ export const MovieData = () => {
                  </form>
             </form>
 
-
             <ShowMovieData movieObject={movieObject} movieValue={movieValue}/>
         </> 
     )
