@@ -19,7 +19,7 @@ export const MovieData = () => {
         console.log("hello there!", movieValue)
         getMovie(movieValue);
     }
-console
+
     const handleChange = (event) => {
         setMovieValue(event.target.value);
     }
@@ -35,11 +35,13 @@ console
                 </label>
                 <br />
                 <button type="submit">generate movie info</button>
+                <form>
+                    <button type="submit">clear movies</button>
+                 </form>
             </form>
 
 
             <ShowMovieData movieObject={movieObject} movieValue={movieValue}/>
-
         </> 
     )
 }
